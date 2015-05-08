@@ -72,7 +72,7 @@ class Administrador extends CI_Controller {
 
 	public function acumulado_mensual(){
 		if ( $this->input->post() ){
-//			var_dump($this->input->post() );
+			//var_dump($this->input->post() );
 
 			$this->load->model('data');
 			$esp=""; if($this->input->post('mes')<10){$esp="0";}
@@ -128,5 +128,29 @@ class Administrador extends CI_Controller {
 				$this->load->view('contenido/adm_panel',array('trabajador_detallado'=>$this->data->detalla_trabajador($idt) ) );
 				$this->load->view('html/footer');
 	}//fin de detalla trabajador
+
+   function proceso_liquidacion($idt=""){
+   	if ( $this->input->post() ){
+   		
+   		$this->load->model('data');
+    	if($this->data->actualizar_estado_trabajando($idt)){
+
+	    	$idt=$this->input->post('id_trabajador');
+	    	$monto=$this->input->post('txtMontoLiquidacion');
+	    	$fecha=$this->input->post('fechaL');
+
+
+	    	if( $this->data->cargar_liquidacion(array( 'idt'=> $this->input->post('id_trabajador'), 'fecha'=>$this->input->post('fechaL'), ) ) ){
+	    		echo "Se cargo la liquidacion exitosamente.";
+	    	}
+
+    	}else{
+    		echo "No se pudo cambiar el status al trabajador";
+    	}
+
+   	}else{
+   			echo "No se recibieron datos por post";
+   		}
+    } //fin de proceso_liquidacion
 
 }//fin de clase
