@@ -154,4 +154,74 @@ class Administrador extends CI_Controller {
 	    	redirect('administrador', 'refresh');
     } //fin de proceso_liquidacion
 
+    function contabilizar_anticipos_liquidaciones(){
+
+				$this->load->model('data');
+				$registros=null;
+    			$anticipos=$this->data->todos_anticipos();
+    			$liquidaciones=$this->data->todas_liquidaciones();
+
+    			//Recorrido de los anticipo y cargo los datos en registros
+    			for($i=0 ; $i< count($anticipos) ; $i++ ){
+
+    				$registros[]=array(
+    					'tipo'=>'A',
+    					'fecha'=>$anticipos[$i]['fechaA'],
+    					'monto'=>$anticipos[$i]['monto_A'],
+    					'data'=>$anticipos[$i]
+    				);
+    			}
+
+				/* ##################################################### */    			
+
+    			//Recorrido de liquidaciones y cargo los datos en registros
+    			for($i=0 ; $i< count($liquidaciones) ; $i++ ){
+
+    				$registros[]=array(
+    					'tipo'=>'L',
+    					'fecha'=>$liquidaciones[$i]['fecha'],
+    					'monto'=>$liquidaciones[$i]['monto'],
+    					'data'=>$liquidaciones[$i]
+    				);
+    			}
+
+
+    			$ordenado=$this->orderMultiDimensionalArray($registros,'fecha',false) ;
+    			//var_dump( $ordenado );
+
+    			foreach ($ordenado as $key => $value) {
+    				# code...
+    				echo "k- $key  v- ".$value['tipo'];
+    				//var_dump($value);
+    				echo "<br>";
+    			}
+ 
+    }//Fin de contabilizar_anticipos_liquidaciones
+
+    function ordenar_fechas( $a, $b ) {
+    return strtotime($a['fecha']) - strtotime($b['fecha']);
+	}//fin de ordenar fechas
+ 	
+function orderMultiDimensionalArray ($toOrderArray, $field, $inverse = false) {  
+    $position = array();  
+    $newRow = array();  
+    foreach ($toOrderArray as $key => $row) {  
+            $position[$key]  = $row[$field];  
+            $newRow[$key] = $row;  
+    }  
+    if ($inverse) {  
+        arsort($position);  
+    }  
+    else {  
+        asort($position);  
+    }  
+    $returnArray = array();  
+    foreach ($position as $key => $pos) {       
+        $returnArray[] = $newRow[$key];  
+    }  
+    return $returnArray;  
+} 
+
+
+
 }//fin de clase

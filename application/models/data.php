@@ -34,6 +34,24 @@ class Data extends CI_Model {
 
     }
 
+
+    function todas_liquidaciones(){
+		$this->sql="SELECT * FROM `liquidaciones` ORDER BY `fecha`  ASC";
+		$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+		$this->query=$this->db->query($this->sql);
+		$this->data=null;
+			foreach ($this->query->result() as $row)
+					{
+						$this->data[]=array(
+							'id' => $row->id,
+							'fecha' => $row->fecha,
+							'monto' => $row->monto,
+							'IDT' => $row->IDT 
+							);
+					}
+			return $this->data;
+    }//Fin de todas_liquidaciones
+
     function todos_anticipos(){
 
     	$this->sql="SELECT `IDanticipo` , `bancoA` , `monto_A` ,`CONCEPTO`,`nro_concep`, `fechaA`, `descripcion` , `estadoAnticipo` , `nombreT` , `apellidoT` , `cedulaT`,`TRABAJANDO` FROM `anticipo_prestaciones` , `trabajadores` WHERE `anticipo_prestaciones`.`IDT` = `trabajadores`.`IDT`  ORDER BY `fechaA`  ASC";
