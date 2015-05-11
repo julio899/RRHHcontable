@@ -176,6 +176,31 @@ entre el rango 0 a Numero de letras que tiene la cadena */
 
 
 
+    function actualizar_estado_trabajando($idt=""){
+    	$this->sql="UPDATE `dideco`.`trabajadores` SET `TRABAJANDO` = 'NO' WHERE `trabajadores`.`IDT` = '".$idt."'";
+    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	if ($this->db->query($this->sql)) {
+    		return TRUE;
+    	}else{
+    		return FALSE;
+    	}
+    }//FIN de actualizar_estado_trabajando
+
+
+
+    function cargar_liquidacion($data=""){
+
+    	$this->sql="INSERT INTO `liquidaciones` (`id`, `fecha`, `monto`, `IDT`) VALUES (NULL, '".$data['fecha']."', '".$data['monto']."', '".$data['idt']."');";
+    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);    	
+
+    	if ($this->db->query($this->sql)) {
+    		return TRUE;
+    	}else{
+    		return FALSE;
+    	}
+
+    }//fin de cargar_liquidacion
+
     function trabajadores($cod_emp=""){
     	$this->sql="SELECT * FROM `trabajadores` WHERE `TRABAJANDO` NOT LIKE 'NO' ORDER BY `trabajadores`.`nombreT` ASC";
     	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);

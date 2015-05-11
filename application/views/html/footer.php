@@ -65,7 +65,7 @@ if($this->session->userdata('tipo')=='C'){echo base_url().index_page().'/consult
     <div class="modal-dialog">
       <div class="modal-content">
 
-        <form action="#">
+        <form action="<?php echo base_url().index_page();?>/administrador/proceso_liquidacion" method="post" id="form_liquidacion">
                      <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                       <h4 class="modal-title">Confirmacion de Liquidaci&oacute;n</h4>
@@ -76,6 +76,7 @@ if($this->session->userdata('tipo')=='C'){echo base_url().index_page().'/consult
                         <input type="text" id="txtMontoLiquidacion" disabled="disabled" class="form-control">
                         <label for="fechaL">Cargue la fecha en que el trabajador fue liquidado</label>
                         <input type="date" name="fechaL" class="form-control" id="fechaL" required>
+                        <input type="hidden" name="monto" value="" id="montoInput">
                         <input type="submit" class="btn btn-danger" value="CONFIRMAR LIQUIDACI&Oacute;N">
                     </div>
         </form>
@@ -113,6 +114,11 @@ $('#btnLIQUIDAR').click(function(e){
   $('#txtNombreT').val("Nombre: "+nombreTrabajador);
   $('#txtCiT').val("CI: "+ciTrabajador);
   $('#txtMontoLiquidacion').val("LIQUIDACION: "+montoLiquidacion);
+
+  var url=$("#form_liquidacion").attr("action");
+  url=url+"/"+idTrabajador;
+  $("#form_liquidacion").attr("action",url);
+  $("#montoInput").attr("value",montoLiquidacion);
 
   //Lanzo modal de Liquidacion
   $('#liquidacion_trabajador').modal();

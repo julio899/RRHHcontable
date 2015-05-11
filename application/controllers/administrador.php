@@ -133,24 +133,25 @@ class Administrador extends CI_Controller {
    	if ( $this->input->post() ){
    		
    		$this->load->model('data');
-    	if($this->data->actualizar_estado_trabajando($idt)){
+    	if($this->data->actualizar_estado_trabajando($idt)==TRUE){
 
-	    	$idt=$this->input->post('id_trabajador');
-	    	$monto=$this->input->post('txtMontoLiquidacion');
-	    	$fecha=$this->input->post('fechaL');
+	    	//var_dump(array('fecha'=>$this->input->post('fechaL'), 'monto'=>$this->input->post('monto'), 'idt'=> $idt ) );
 
-
-	    	if( $this->data->cargar_liquidacion(array( 'idt'=> $this->input->post('id_trabajador'), 'fecha'=>$this->input->post('fechaL'), ) ) ){
-	    		echo "Se cargo la liquidacion exitosamente.";
+	    	if( $this->data->cargar_liquidacion(array('fecha'=>$this->input->post('fechaL'), 'monto'=>$this->input->post('monto'), 'idt'=> $idt ) ) ){
+	    		$this->session->set_flashdata('ok', 'Se cargo la liquidacion exitosamente.');
+	    	}else{
+	    		$this->session->set_flashdata('error', 'No se pudo cagar la liquidacion.');
 	    	}
 
     	}else{
-    		echo "No se pudo cambiar el status al trabajador";
+	    		$this->session->set_flashdata('error', 'No se pudo cambiar el status al trabajador.');
     	}
 
    	}else{
-   			echo "No se recibieron datos por post";
+	    		$this->session->set_flashdata('error', 'No se recibieron datos por post');
    		}
+
+	    	redirect('administrador', 'refresh');
     } //fin de proceso_liquidacion
 
 }//fin de clase
