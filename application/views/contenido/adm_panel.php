@@ -1,8 +1,9 @@
+<?php $obj=$this->session->userdata('empresa_seleccionada');?>
 <div class="container">
 	<div class="row">
 	          <div class="col-lg-12">
 	            <div class="page-header">
-	              <h1>Estas en <?php echo $this->session->userdata('empresa_seleccionada')['razon_social'];?></h1>
+	              <h1>Estas en <?php echo $obj['razon_social'];?></h1>
 
 	              <?php if($this->session->flashdata('ok')){echo "<p class=\"alert alert-success\"><strong>".$this->session->flashdata('ok')."</strong></p>";}?>
 
@@ -32,6 +33,7 @@
 	   			  	a href="<?php echo base_url().index_page().'/administrador/todos_anticipos'?>" class="form-control btn btn-warning">Total de Anticipos: <?php if(isset($monto_todos_anticipos)){ echo number_format($monto_todos_anticipos, 2, ',', '.');}?></a>
 					--><a href="" id="consulta_mensual" class="form-control btn btn-primary">Consulta Mensual</a>
 			    	<a class="form-control btn btn-info" href="<?php echo base_url().index_page().'/administrador/todos_anticipos'?>">Consultar TODOS</a>
+			  		<a class="form-control btn btn-warning" href="<?php echo base_url().index_page().'/administrador/contabilizar_anticipos_liquidaciones'?>">CONTABILIZAR ANTICIPOS</a>
 			  </div>
 			</div>
 	 	</div>
@@ -45,7 +47,7 @@
 					?>
 
 	
-            <h4>Registro de trabajador en : <?php echo strtoupper($this->session->userdata('empresa_seleccionada')['razon_social']);?></h4>
+            <h4>Registro de trabajador en : <?php echo strtoupper($obj['razon_social']);?></h4>
             <?php 
             		if($this->session->flashdata('ok')){
             			echo '<p class="alert alert-success">'.$this->session->flashdata('ok').'</p>';
@@ -335,7 +337,7 @@ endif;
 								//si la Pagina es todos_anticipos  muestro tabla
 								if ($this->session->userdata('page')=='todos_anticipos' && isset($todos_anticipos)):
 					?>
-						<pre>Historico de Todos los Anticipos realizados en <?php echo strtoupper($this->session->userdata('empresa_seleccionada')['razon_social']);?></pre>
+						<pre>Historico de Todos los Anticipos realizados en <?php echo strtoupper($obj['razon_social']);?></pre>
 	 				<table class="table table-striped table-hover ">
 					  <thead>
 					    <tr>

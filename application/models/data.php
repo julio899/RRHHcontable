@@ -5,6 +5,7 @@ class Data extends CI_Model {
 	var $query="";
 	var $data="";
 	var $acu=0;
+	var $obj=null;
 	 function __construct()
     {
         // Call the Model constructor
@@ -34,10 +35,14 @@ class Data extends CI_Model {
 
     }
 
+    function seleccion_bd(){
+    	$this->obj=$this->session->userdata('empresa_seleccionada');
+		$this->load->database($this->obj['bd'],TRUE);
+	}//FIN de seleccion_bd
 
     function todas_liquidaciones(){
 		$this->sql="SELECT * FROM `liquidaciones` ORDER BY `fecha`  ASC";
-		$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+		$this->seleccion_bd();
 		$this->query=$this->db->query($this->sql);
 		$this->data=null;
 			foreach ($this->query->result() as $row)
@@ -46,7 +51,7 @@ class Data extends CI_Model {
 							'id' => $row->id,
 							'fecha' => $row->fecha,
 							'monto' => $row->monto,
-							'IDT' => $row->IDT 
+							'IDT' => $row->IDT
 							);
 					}
 			return $this->data;
@@ -56,7 +61,7 @@ class Data extends CI_Model {
 
     	$this->sql="SELECT `IDanticipo` , `bancoA` , `monto_A` ,`CONCEPTO`,`nro_concep`, `fechaA`, `descripcion` , `estadoAnticipo` , `nombreT` , `apellidoT` , `cedulaT`,`TRABAJANDO` FROM `anticipo_prestaciones` , `trabajadores` WHERE `anticipo_prestaciones`.`IDT` = `trabajadores`.`IDT`  ORDER BY `fechaA`  ASC";
 		//$this->config->load($this->session->userdata('empresa_seleccionada')['bd'], TRUE);
-		$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+		$this->seleccion_bd();
 		$this->query=$this->db->query($this->sql);
 		$this->data=null;
 			foreach ($this->query->result() as $row)
@@ -83,7 +88,7 @@ class Data extends CI_Model {
 
 function todos_anticipos_hasta_year_mes_NO_TRABAJAN_YA($y="",$m=""){    	
 		$this->sql="SELECT `IDanticipo` , `bancoA` , `monto_A` ,`CONCEPTO`,`nro_concep`, `fechaA`, `descripcion` , `estadoAnticipo` , `nombreT` , `apellidoT` , `cedulaT`,`TRABAJANDO` FROM `anticipo_prestaciones` , `trabajadores` WHERE `anticipo_prestaciones`.`IDT` = `trabajadores`.`IDT` AND `TRABAJANDO` LIKE 'NO' AND `fechaA` <= '$y-$m-31' ORDER BY `fechaA` ASC";
-		$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+		$this->seleccion_bd();
 		$this->query=$this->db->query($this->sql);
 		$this->data=null;
 		$this->acu=0;
@@ -114,7 +119,7 @@ function todos_anticipos_hasta_year_mes_NO_TRABAJAN_YA($y="",$m=""){
     function todos_anticipos_hasta_year_mes($y="",$m=""){
     	//$this->sql="SELECT `IDanticipo` , `bancoA` , `monto_A` ,`CONCEPTO`,`nro_concep`, `fechaA`, `descripcion` , `estadoAnticipo` , `nombreT` , `apellidoT` , `cedulaT`,`TRABAJANDO` FROM `anticipo_prestaciones` , `trabajadores` WHERE `anticipo_prestaciones`.`IDT` = `trabajadores`.`IDT` AND `TRABAJANDO` NOT LIKE 'NO' AND `fechaA` <= '$y-$m-31' ORDER BY `fechaA` ASC";
 		$this->sql="SELECT `IDanticipo` , `bancoA` , `monto_A` ,`CONCEPTO`,`nro_concep`, `fechaA`, `descripcion` , `estadoAnticipo` , `nombreT` , `apellidoT` , `cedulaT`,`TRABAJANDO` FROM `anticipo_prestaciones` , `trabajadores` WHERE `anticipo_prestaciones`.`IDT` = `trabajadores`.`IDT` AND `fechaA` <= '$y-$m-31' ORDER BY `fechaA` ASC";
-		$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+		$this->seleccion_bd();
 		$this->query=$this->db->query($this->sql);
 		$this->data=null;
 		$this->acu=0;
@@ -158,7 +163,7 @@ function todos_anticipos_hasta_year_mes_NO_TRABAJAN_YA($y="",$m=""){
 
     function registrar_trabajador($arreglo=""){
     	$this->sql="INSERT INTO `trabajadores` (`nombreT`, `apellidoT`, `cedulaT`, `edoCivilT`, `telefonoT`, `cargoT`, `fechaingresoT`, `direccionT`, `IDT`, `TRABAJANDO`) VALUES ('".$arreglo['nombre']."', '".$arreglo['apellido']."', '".$arreglo['cedula']."', '".$arreglo['estado']."', '".$arreglo['telefono']."', '".$arreglo['cargo']."', '".$arreglo['fecha']."', '".$arreglo['direccion']."', '".substr(sha1($arreglo['cedula']), 0,4)."', '');";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	$this->seleccion_bd();
     	if ($this->db->query($this->sql)) {
     		$this->session->set_flashdata('ok', 'Registro procesado satisfactoriamente..');
     	}else{
@@ -183,7 +188,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
 //echo "*".$cadena."*";
     
     	$this->sql="INSERT INTO `anticipo_prestaciones` (`IDanticipo`, `IDT`, `bancoA`, `estadoAnticipo`, `CONCEPTO`, `nro_concep`, `monto_A`, `fechaA`, `descripcion`) VALUES ('$cadena', '".$arreglo['IDT']."', '".$arreglo['banco']."', 'EMITIDO', '".$arreglo['cheque']."', '".$arreglo['voucher']."', '".$arreglo['monto']."', '".$arreglo['fecha']."', '".$arreglo['descripcion']."');";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	$this->seleccion_bd();
     	if ($this->db->query($this->sql)) {
     		$this->session->set_flashdata('ok', 'Anticipo procesado satisfactoriamente..');
     	}else{
@@ -196,7 +201,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
 
     function actualizar_estado_trabajando($idt=""){
     	$this->sql="UPDATE `dideco`.`trabajadores` SET `TRABAJANDO` = 'NO' WHERE `trabajadores`.`IDT` = '".$idt."'";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	$this->seleccion_bd();
     	if ($this->db->query($this->sql)) {
     		return TRUE;
     	}else{
@@ -209,8 +214,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
     function cargar_liquidacion($data=""){
 
     	$this->sql="INSERT INTO `liquidaciones` (`id`, `fecha`, `monto`, `IDT`) VALUES (NULL, '".$data['fecha']."', '".$data['monto']."', '".$data['idt']."');";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);    	
-
+    	$this->seleccion_bd();
     	if ($this->db->query($this->sql)) {
     		return TRUE;
     	}else{
@@ -221,7 +225,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
 
     function trabajadores($cod_emp=""){
     	$this->sql="SELECT * FROM `trabajadores` WHERE `TRABAJANDO` NOT LIKE 'NO' ORDER BY `trabajadores`.`nombreT` ASC";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	$this->seleccion_bd();
     	$this->data=null;
     	$this->query=$this->db->query($this->sql);
 			foreach ($this->query->result() as $row)
@@ -249,7 +253,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
 
     function trabajador($idt=""){    	
     	$this->sql="SELECT * FROM `trabajadores` WHERE `IDT` LIKE '$idt' ORDER BY `nombreT` ASC";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	$this->seleccion_bd();
     	$this->data=null;
     	$this->query=$this->db->query($this->sql);
 			foreach ($this->query->result() as $row)
@@ -273,7 +277,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
     function anticipos_trabajador($idt=""){
     	# SELECT * FROM `anticipo_prestaciones` WHERE `IDT` LIKE 'wiy6'
     	$this->sql="SELECT * FROM `anticipo_prestaciones` WHERE `IDT` LIKE '$idt'  ORDER BY `anticipo_prestaciones`.`fechaA` ASC";
-    	$this->load->database($this->session->userdata('empresa_seleccionada')['bd'],TRUE);
+    	$this->seleccion_bd();
     	$this->data=null;
     	$this->acu=0;
     	$this->query=$this->db->query($this->sql);

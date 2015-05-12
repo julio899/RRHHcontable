@@ -3,6 +3,7 @@
 class Administrador extends CI_Controller {
 	var $bandera=FALSE;	
 	var $temporal="";
+	var $obj=null;
 	public function index()
 	{
 		if ($this->session->userdata('tipo')=='A') {
@@ -33,8 +34,8 @@ class Administrador extends CI_Controller {
 	public function registrar_trabajador(){
 		if ($this->session->userdata('tipo')=='A') {
 
-				
-				if($this->session->userdata('empresa_seleccionada')['razon_social']){
+				$this->obj=$this->session->userdata('empresa_seleccionada');
+				if($this->obj['razon_social']){
 					//echo "<pre> -->seleccion de ".$this->session->userdata('empresa_seleccionada')['razon_social']."</pre>";
 
 				$this->session->set_userdata('page','registrar_trabajador');
@@ -181,7 +182,7 @@ class Administrador extends CI_Controller {
     					'tipo'=>'L',
     					'fecha'=>$liquidaciones[$i]['fecha'],
     					'monto'=>$liquidaciones[$i]['monto'],
-    					'data'=>$liquidaciones[$i]
+    					'data' =>$liquidaciones[$i]
     				);
     			}
 
@@ -189,12 +190,56 @@ class Administrador extends CI_Controller {
     			$ordenado=$this->orderMultiDimensionalArray($registros,'fecha',false) ;
     			//var_dump( $ordenado );
 
+    			$this->load->view('html/head');
+
+    				echo "<br><br><br><table class=\"table table-striped table-hover \">
+					  <thead>
+					    <tr>
+					      <th>NOMBRE TRABAJADOR</th>
+					      <th>TIPO</th>
+					      <th>DEBE</th>
+					      <th>HABER</th>
+					      <th>SALDO</th>
+					      <th>FECHA</th>
+					    </tr>
+					  </thead>
+
+
+					  		<tbody>";
+				$saldo=0;
     			foreach ($ordenado as $key => $value) {
-    				# code...
-    				echo "k- $key  v- ".$value['tipo'];
-    				//var_dump($value);
-    				echo "<br>";
+					if ($value['tipo']=='A') { echo "<tr>"; $saldo=$saldo+$value['monto'];}
+					if ($value['tipo']=='L'){
+						$numero=str_replace(".", "", $value['monto']);
+						$numero=str_replace(",", ".", $numero);
+						$saldo= $saldo-$numero;
+						echo "<tr class=\"danger\">";
+
+						$trabajador=$this->data->trabajador($value['data']['IDT']);
+					}
+											echo "<td>";
+											if($value['tipo']=="L"){echo $trabajador['nombreT']." ".$trabajador['apellidoT'];}
+											if($value['tipo']=="A"){ echo $value['data']['nombreT']." ".$value['data']['apellidoT'];}
+											echo "</td>
+											      <td>".$value['tipo']."</td>
+											      <td class=\"derecha borde-derecho\">";
+											      if($value['tipo']=="A"){echo number_format($value['monto'],2,",",".");}
+											      echo "</td>
+											      <td  class=\"derecha borde-izquierdo\">";
+											      	if($value['tipo']=="L"){echo $value['monto'];}
+											      echo "</td>
+											      <td>";
+											      
+											      echo number_format($saldo,2,",",".") ."</td>
+											      <td>".$value['fecha'] ."</td>
+									</tr>";
+									
     			}
+
+    			echo "</tbody>
+					</table>";
+
+    			$this->load->view('html/footer');
  
     }//Fin de contabilizar_anticipos_liquidaciones
 

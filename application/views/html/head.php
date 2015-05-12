@@ -20,6 +20,15 @@
     table tr td.derecha {
     text-align: right;
     }
+
+    table tr td.borde-derecho {
+    border-right: inset;
+    }
+
+    table tr td.borde-izquierdo {
+    border-right: dashed;
+    border-width: 1px;
+    }
     .table > tbody > tr > td{
       padding: 4px;
     }
@@ -69,6 +78,7 @@
 div.bs-callout-warning {
     border-left-color: #F0AD4E;
 }
+
 	</style>
 
 </head>
