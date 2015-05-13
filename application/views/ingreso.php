@@ -23,7 +23,7 @@
 		<div class="col-md-4">
 			<div class="wrapper">
 			    <form class="form-signin" method="post" action="<?php echo base_url().index_page().'/ingreso/validacion'?>">       
-			      <h2 class="form-signin-heading">Porfavor Identifiquese</h2>
+			      <h2 class="form-signin-heading">Por Favor Identifiquese</h2>
 			      <input type="text" class="form-control" name="usuario" placeholder="Usuario" required="" autofocus="" />
 			      <input type="password" class="form-control" name="password" placeholder="Clave" required=""/>      
 
