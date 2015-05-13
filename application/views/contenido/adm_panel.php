@@ -57,7 +57,7 @@
             		}
             ?>
             <div class="panel panel-default">
-		            <form method="POST" action="<?php echo base_url().index_page().'/administrador/procesar_registro_trabajador';?>">
+		            <form method="POST" action="<?php echo base_url().index_page().'/administrador/procesar_registro_trabajador';?>" id="form_registro_trabajador">
 		                <div class="panel-body form-horizontal payment-form">
 		                    
 		                    <div class="form-group">
@@ -100,7 +100,7 @@
 		                    <div class="form-group">
 		                        <label for="fecha" class="col-sm-3 control-label">Fecha</label>
 		                        <div class="col-sm-9">
-		                            <input type="date" class="form-control" id="fecha" name="fecha" required>
+		                            <input type="date" class="form-control" id="fecha" name="fecha" placeholder="AAAA-mm-dd" required>
 		                        </div>
 		                    </div> 
 		                    <div class="form-group">

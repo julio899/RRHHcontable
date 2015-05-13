@@ -75,11 +75,35 @@ if($this->session->userdata('tipo')=='C'){echo base_url().index_page().'/consult
                         <input type="text" id="txtCiT" disabled="disabled" class="form-control">
                         <input type="text" id="txtMontoLiquidacion" disabled="disabled" class="form-control">
                         <label for="fechaL">Cargue la fecha en que el trabajador fue liquidado</label>
-                        <input type="date" name="fechaL" class="form-control" id="fechaL" required>
+                        <input type="date" name="fechaL" class="form-control" id="fechaL" required placeholder="AAAA-mm-dd">
                         <input type="hidden" name="monto" value="" id="montoInput">
                         <input type="submit" class="btn btn-danger" value="CONFIRMAR LIQUIDACI&Oacute;N">
                     </div>
         </form>
+        <script>
+// just for the demos, avoids form submit
+jQuery.validator.setDefaults({
+  debug: true,
+  success: "valid"
+});
+$( "#form_liquidacion" ).validate({
+  rules: {
+    field: {
+      required: true,
+      date: true
+    }
+  }
+});
+
+$( "#form_registro_trabajador" ).validate({
+  rules: {
+    field: {
+      required: true,
+      date: true
+    }
+  }
+});
+</script>
 
       </div>
     </div>

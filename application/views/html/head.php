@@ -9,6 +9,11 @@
 	<!-- Js -->
 	<script src="<?php echo base_url().'js/jquery-1.11.1.min.js';?>"></script>
 	<script src="<?php echo base_url().'js/bootstrap.js';?>"></script>
+
+<!-- Validacion para Formularios -->
+<script src="<?php echo base_url();?>js/jquery.validate.min.js"></script>
+<script src="<?php echo base_url();?>js/additional-methods.min.js"></script>
+
 	<style type="text/css" media="screen">
 		div.cabecera{
 			height: 80px;
