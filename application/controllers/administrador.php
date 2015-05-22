@@ -213,10 +213,14 @@ class Administrador extends CI_Controller {
 						$numero=str_replace(".", "", $value['monto']);
 						$numero=str_replace(",", ".", $numero);
 						$saldo= $saldo-$numero;
+
 						echo "<tr class=\"danger\">";
 
 						$trabajador=$this->data->trabajador($value['data']['IDT']);
 					}
+
+					$originalDate = $value['fecha'];
+					$newDate = date("d-m-Y", strtotime($originalDate));
 											echo "<td>";
 											if($value['tipo']=="L"){echo $trabajador['nombreT']." ".$trabajador['apellidoT'];}
 											if($value['tipo']=="A"){ echo $value['data']['nombreT']." ".$value['data']['apellidoT'];}
@@ -231,7 +235,7 @@ class Administrador extends CI_Controller {
 											      <td>";
 											      
 											      echo number_format($saldo,2,",",".") ."</td>
-											      <td>".$value['fecha'] ."</td>
+											      <td>".$newDate."</td>
 									</tr>";
 									
     			}
