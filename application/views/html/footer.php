@@ -82,6 +82,7 @@ if($this->session->userdata('tipo')=='C'){echo base_url().index_page().'/consult
         </form>
         <script>
 // just for the demos, avoids form submit
+/*
 jQuery.validator.setDefaults({
   debug: true,
   success: "valid"
@@ -102,7 +103,7 @@ $( "#form_registro_trabajador" ).validate({
       date: true
     }
   }
-});
+});*/
 </script>
 
       </div>
