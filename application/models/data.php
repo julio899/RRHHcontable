@@ -200,7 +200,7 @@ entre el rango 0 a Numero de letras que tiene la cadena */
 
 
     function actualizar_estado_trabajando($idt=""){
-    	$this->sql="UPDATE `dideco`.`trabajadores` SET `TRABAJANDO` = 'NO' WHERE `trabajadores`.`IDT` = '".$idt."'";
+    	$this->sql="UPDATE `trabajadores` SET `TRABAJANDO` = 'NO' WHERE `trabajadores`.`IDT` = '".$idt."'";
     	$this->seleccion_bd();
     	if ($this->db->query($this->sql)) {
     		return TRUE;
