@@ -47,10 +47,13 @@
 
 $active_group = 'default';
 $active_record = TRUE;
+/*Usuario y clave de la Base de dato*/
+$usuario='usuario';
+$clave='clave';
 
 $db['default']['hostname'] = 'localhost';
-$db['default']['username'] = 'root';
-$db['default']['password'] = 'vinachi89';
+$db['default']['username'] = $usuario;
+$db['default']['password'] = $clave;
 $db['default']['database'] = 'rrhh';
 $db['default']['dbdriver'] = 'mysql';
 $db['default']['dbprefix'] = '';
@@ -67,8 +70,8 @@ $db['default']['stricton'] = FALSE;
 /*Dideco*/
 
 $db['dideco']['hostname'] = 'localhost';
-$db['dideco']['username'] = 'root';
-$db['dideco']['password'] = 'vinachi89';
+$db['dideco']['username'] = $usuario;
+$db['dideco']['password'] = $clave;
 $db['dideco']['database'] = 'dideco';
 $db['dideco']['dbdriver'] = 'mysql';
 $db['dideco']['dbprefix'] = '';
@@ -85,8 +88,8 @@ $db['dideco']['stricton'] = FALSE;
 # Compacto
 
 $db['compacto']['hostname'] = 'localhost';
-$db['compacto']['username'] = 'root';
-$db['compacto']['password'] = 'vinachi89';
+$db['compacto']['username'] = $usuario;
+$db['compacto']['password'] = $clave;
 $db['compacto']['database'] = 'compacto';
 $db['compacto']['dbdriver'] = 'mysql';
 $db['compacto']['dbprefix'] = '';
@@ -103,8 +106,8 @@ $db['compacto']['stricton'] = FALSE;
 # Compacto LARA
 
 $db['compactolara']['hostname'] = 'localhost';
-$db['compactolara']['username'] = 'root';
-$db['compactolara']['password'] = 'vinachi89';
+$db['compactolara']['username'] = $usuario;
+$db['compactolara']['password'] = $clave;
 $db['compactolara']['database'] = 'compactolara';
 $db['compactolara']['dbdriver'] = 'mysql';
 $db['compactolara']['dbprefix'] = '';
@@ -121,8 +124,8 @@ $db['compactolara']['stricton'] = FALSE;
 # Deimport
 
 $db['deimport']['hostname'] = 'localhost';
-$db['deimport']['username'] = 'root';
-$db['deimport']['password'] = 'vinachi89';
+$db['deimport']['username'] = $usuario;
+$db['deimport']['password'] = $clave;
 $db['deimport']['database'] = 'deimport';
 $db['deimport']['dbdriver'] = 'mysql';
 $db['deimport']['dbprefix'] = '';
@@ -139,8 +142,8 @@ $db['deimport']['stricton'] = FALSE;
 # Deimport LARA
 
 $db['deimportlara']['hostname'] = 'localhost';
-$db['deimportlara']['username'] = 'root';
-$db['deimportlara']['password'] = 'vinachi89';
+$db['deimportlara']['username'] = $usuario;
+$db['deimportlara']['password'] = $clave;
 $db['deimportlara']['database'] = 'deimportlara';
 $db['deimportlara']['dbdriver'] = 'mysql';
 $db['deimportlara']['dbprefix'] = '';
@@ -158,8 +161,8 @@ $db['deimportlara']['stricton'] = FALSE;
 # transdevi 
 
 $db['transdevi']['hostname'] = 'localhost';
-$db['transdevi']['username'] = 'root';
-$db['transdevi']['password'] = 'vinachi89';
+$db['transdevi']['username'] = $usuario;
+$db['transdevi']['password'] = $clave;
 $db['transdevi']['database'] = 'transdevi';
 $db['transdevi']['dbdriver'] = 'mysql';
 $db['transdevi']['dbprefix'] = '';
