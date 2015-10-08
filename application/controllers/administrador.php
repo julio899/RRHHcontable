@@ -131,29 +131,30 @@ class Administrador extends CI_Controller {
 	}//fin de detalla trabajador
 
    function proceso_liquidacion($idt=""){
-   	if ( $this->input->post() ){
-   		
-   		$this->load->model('data');
-    	if($this->data->actualizar_estado_trabajando($idt)==TRUE){
+		   	if ( $this->input->post() ){
+		   		
+		   		$this->load->model('data');
+			    	if($this->data->actualizar_estado_trabajando($idt)==TRUE)
+			    	{
 
-	    	//var_dump(array('fecha'=>$this->input->post('fechaL'), 'monto'=>$this->input->post('monto'), 'idt'=> $idt ) );
+				    	//var_dump(array('fecha'=>$this->input->post('fechaL'), 'monto'=>$this->input->post('monto'), 'idt'=> $idt ) );
 
-	    	if( $this->data->cargar_liquidacion(array('fecha'=>$this->input->post('fechaL'), 'monto'=>$this->input->post('monto'), 'idt'=> $idt ) ) ){
-	    		$this->session->set_flashdata('ok', 'Se cargo la liquidacion exitosamente.');
-	    	}else{
-	    		$this->session->set_flashdata('error', 'No se pudo cagar la liquidacion.');
-	    	}
+				    	if( $this->data->cargar_liquidacion(array('fecha'=>$this->input->post('fechaL'), 'monto'=>$this->input->post('monto'), 'idt'=> $idt ) ) ){
+				    		$this->session->set_flashdata('ok', 'Se cargo la liquidacion exitosamente.');
+				    	}else{
+				    		$this->session->set_flashdata('error', 'No se pudo cagar la liquidacion.');
+				    	}
 
-    	}else{
-	    		$this->session->set_flashdata('error', 'No se pudo cambiar el status al trabajador.');
-    	}
+			    	}else	{
+				    		$this->session->set_flashdata('error', 'No se pudo cambiar el status al trabajador.');
+			    			}
 
-   	}else{
-	    		$this->session->set_flashdata('error', 'No se recibieron datos por post');
-   		}
+		   	}else{
+			    		$this->session->set_flashdata('error', 'No se recibieron datos por post');
+		   		}
 
-	    	redirect('administrador', 'refresh');
-    } //fin de proceso_liquidacion
+			    	redirect('administrador', 'refresh');
+	} //fin de proceso_liquidacion
 
     function contabilizar_anticipos_liquidaciones(){
 
@@ -192,7 +193,13 @@ class Administrador extends CI_Controller {
 
     			$this->load->view('html/head');
 
-    				echo "<br><br><br><table class=\"table table-striped table-hover \">
+    			$this->load->view('tablas/tabla_contabilizar_anticipos', array('datos'=>$ordenado) );
+    				/*echo "<br><br><br>
+    				<div class=\"container\">
+    				<div class=\"row-fluid\">
+    					<div class=\"col-lg-3\"></div>
+    					<div class=\"col-lg-9\">
+    				<table class=\"table table-striped table-hover \">
 					  <thead>
 					    <tr>
 					      <th>NOMBRE TRABAJADOR</th>
@@ -203,9 +210,8 @@ class Administrador extends CI_Controller {
 					      <th>FECHA</th>
 					    </tr>
 					  </thead>
-
-
-					  		<tbody>";
+					  		<tbody>";*/
+					  		/*
 				$saldo=0;
     			foreach ($ordenado as $key => $value) {
 					if ($value['tipo']=='A') { echo "<tr>"; $saldo=$saldo+$value['monto'];}
@@ -238,10 +244,14 @@ class Administrador extends CI_Controller {
 											      <td>".$newDate."</td>
 									</tr>";
 									
-    			}
+    			}*/
 
-    			echo "</tbody>
-					</table>";
+	    			/*echo "</tbody>
+						</table>
+						</div>
+    				</div>
+
+					</div>";*/
 
     			$this->load->view('html/footer');
  

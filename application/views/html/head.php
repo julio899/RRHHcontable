@@ -84,6 +84,14 @@ div.bs-callout-warning {
     border-left-color: #F0AD4E;
 }
 
+caption>span{
+    font-size: 3rem;
+    font-weight: 100;
+    font-family: "Source Sans Pro", Calibri, Candara, Arial, sans-serif;  
+    line-height: 1.1;
+    color: inherit;
+}
+
 	</style>
 
 </head>
