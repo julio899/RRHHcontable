@@ -32,9 +32,8 @@
 
 														  		<tbody>
 														  		<?php #Datos de la tabla
-														  			if(isset($datos)):
-
 																		$saldo=0;
+														  			if(isset($datos)):
 														    			foreach ($datos as $key => $value) {
 																			if ($value['tipo']=='A') { echo "<tr>"; $saldo=$saldo+$value['monto'];}
 																			if ($value['tipo']=='L'){

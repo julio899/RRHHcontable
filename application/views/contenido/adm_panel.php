@@ -3,7 +3,7 @@
 	<div class="row">
 	          <div class="col-lg-12">
 	            <div class="page-header">
-	              <h1>Estas en <?php echo $obj['razon_social'];?></h1>
+	              <h1>Estas en <?php echo $obj['razon_social'];?> </h1>
 
 	              <?php if($this->session->flashdata('ok')){echo "<p class=\"alert alert-success\"><strong>".$this->session->flashdata('ok')."</strong></p>";}?>
 
@@ -37,7 +37,7 @@
             		}
             ?>
             <div class="panel panel-default">
-		            <form method="POST" action="<?php echo base_url().index_page().'/administrador/procesar_registro_trabajador';?>" id="form_registro_trabajador">
+		            <form method="POST" action="<?php echo base_url().'administrador/procesar_registro_trabajador';?>" id="form_registro_trabajador">
 		                <div class="panel-body form-horizontal payment-form">
 		                    
 		                    <div class="form-group">
@@ -121,7 +121,7 @@
 										  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 										    <?php 
 										  		for ($i=0; $i < count($trabajadores); $i++) { 
-										  			echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="'.base_url().index_page().'/administrador/detalla_trabajador/'.$trabajadores[$i]['IDT'].'">'.$trabajadores[$i]['nombreT'].' '.$trabajadores[$i]['apellidoT'].'</a></li>';
+										  			echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="'.base_url().'administrador/detalla_trabajador/'.$trabajadores[$i]['IDT'].'">'.$trabajadores[$i]['nombreT'].' '.$trabajadores[$i]['apellidoT'].'</a></li>';
 										  		}
 										  ?> 	 
 										  </ul>
@@ -205,7 +205,7 @@ if(isset($trabajadores_anticipo)): ?>
 										  <ul class="dropdown-menu" role="menu" aria-labelledby="dropdownMenu1">
 										    <?php 
 										  		for ($i=0; $i < count($trabajadores_anticipo); $i++) { 
-										  			echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="'.base_url().index_page().'/administrador/trabajador_seleccionado/'.$trabajadores_anticipo[$i]['IDT'].'">'.$trabajadores_anticipo[$i]['nombreT'].' '.$trabajadores_anticipo[$i]['apellidoT'].'</a></li>';
+										  			echo '<li role="presentation"><a role="menuitem" tabindex="-1" href="'.base_url().'administrador/trabajador_seleccionado/'.$trabajadores_anticipo[$i]['IDT'].'">'.$trabajadores_anticipo[$i]['nombreT'].' '.$trabajadores_anticipo[$i]['apellidoT'].'</a></li>';
 										  		}
 										  ?> 	 
 										  </ul>
@@ -234,7 +234,7 @@ if (isset($trabajador_seleccionado)): ?>
 							echo $trabajador_seleccionado['trabajador']['cargoT']."<br>";
 							echo "Fecha de Ingreso: ".$trabajador_seleccionado['trabajador']['fechaingresoT']."<br>";
 							?></p>
-							<p><a class="link" href="<?php echo base_url().index_page()."/administrador/detalla_trabajador/".$IDT;?>">Ver Iformacion Detallada o Historial »</a></p>
+							<p><a class="link" href="<?php echo base_url()."administrador/detalla_trabajador/".$IDT;?>">Ver Iformacion Detallada o Historial »</a></p>
 						</div>
 
 	</div>			
@@ -246,7 +246,7 @@ if (isset($trabajador_seleccionado)): ?>
 					<div style="display: block;" class="box box-element ui-draggable">
 					
 						<div class="view">
-								<form class="form-horizontal" method="POST" action="<?php echo base_url().index_page()."/administrador/procesar_anticipo_trabajador/";?>" role="form">
+								<form class="form-horizontal" method="POST" action="<?php echo base_url()."administrador/procesar_anticipo_trabajador/";?>" role="form">
 									  <div class="form-group">
 									    <label for="monto" class="col-sm-2 control-label">Monto: </label>
 									    <div class="col-sm-10">

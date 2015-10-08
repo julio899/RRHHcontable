@@ -16,7 +16,7 @@ class Ingreso extends CI_Controller {
 			$this->data->validacion($u,$p);
 		}else{
 			$this->session->set_flashdata('error', 'El usuario o clave contienen un valor vacio');
-			redirect('/ingreso/', 'refresh');
+			redirect('ingreso', 'refresh');
 		}
 	}
 }

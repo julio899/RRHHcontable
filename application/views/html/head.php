@@ -118,7 +118,7 @@ caption>span{
                 <li><a href="#">DEIMPORT</a></li>-->
                 <?php
                 	foreach ($this->config->config['empresas'] as $key => $value) {
-                		echo '<li><a href="'.base_url().index_page().'/usuario/selecionar_empresa/'.$this->config->config['empresas'][$key]['cod'].'">'.$this->config->config['empresas'][$key]['cod'].' - '.$this->config->config['empresas'][$key]['name'].'</a></li>';
+                		echo '<li><a href="'.base_url().'usuario/selecionar_empresa/'.$this->config->config['empresas'][$key]['cod'].'">'.$this->config->config['empresas'][$key]['cod'].' - '.$this->config->config['empresas'][$key]['name'].'</a></li>';
                 	}
                 ?>
                 <li class="divider"></li>
@@ -140,7 +140,7 @@ caption>span{
           </ul>
 
           <ul class="nav navbar-nav navbar-right">
-            <li class="bg-cierre"><p><a href="<?php echo base_url().index_page().'/usuario/cerrar_sesion';?>" class="btn btn-danger bg-cierre">Cerrar Sesion</a></p></li>
+            <li class="bg-cierre"><p><a href="<?php echo base_url().'usuario/cerrar_sesion';?>" class="btn btn-danger bg-cierre">Cerrar Sesion</a></p></li>
           </ul>
 
         </div>

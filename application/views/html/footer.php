@@ -4,8 +4,8 @@
 	
 	<form action="<?php 
   
-if($this->session->userdata('tipo')=='A'){echo base_url().index_page().'/administrador/acumulado_mensual'; }
-if($this->session->userdata('tipo')=='C'){echo base_url().index_page().'/consultor/acumulado_mensual'; }
+if($this->session->userdata('tipo')=='A'){echo base_url().'administrador/acumulado_mensual'; }
+if($this->session->userdata('tipo')=='C'){echo base_url().'consultor/acumulado_mensual'; }
   ?>" method="post" class="form-horizontal">
 
       <div class="modal-header">
@@ -65,7 +65,7 @@ if($this->session->userdata('tipo')=='C'){echo base_url().index_page().'/consult
     <div class="modal-dialog">
       <div class="modal-content">
 
-        <form action="<?php echo base_url().index_page();?>/administrador/proceso_liquidacion" method="post" id="form_liquidacion">
+        <form action="<?php echo base_url();?>administrador/proceso_liquidacion" method="post" id="form_liquidacion">
                      <div class="modal-header">
                       <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
                       <h4 class="modal-title">Confirmacion de Liquidaci&oacute;n</h4>

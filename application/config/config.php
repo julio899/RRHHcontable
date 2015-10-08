@@ -26,7 +26,7 @@ $config['base_url']	= '';
 | variable so that it is blank.
 |
 */
-$config['index_page'] = 'index.php';
+$config['index_page'] = '';
 
 /*
 |--------------------------------------------------------------------------
@@ -360,51 +360,11 @@ $config['proxy_ips'] = '';
 
 /*configuracion personal de empresas*/
 $config['empresas'] []= array(
-								'cod'=>'001',
-								'name'=>'DIDECO',
-								'razon_social'=>'DIDECO, C.A.',
-								'RIF'=>'J-07516808-9',
-								'bd'=>'dideco'
-								);
-$config['empresas'] []= array(
-								'cod'=>'002',
-								'name'=>'DEIMPORT',
-								'razon_social'=>'DEIMPORT, C.A.',
-								'RIF'=>'J-30076979-8',
-								'bd'=>'deimport'
-								);
-$config['empresas'] []= array(
-								'cod'=>'005',
-								'name'=>'COMPACTO',
-								'razon_social'=>'COMPACTO, C.A.',
-								'RIF'=>'J-30072142-6',
-								'bd'=>'compacto'
-								);
-
-$config['empresas'] []= array(
-								'cod'=>'004',
-								'name'=>'COMPACTOLARA',
-								'razon_social'=>'COMPACTO LARA, C.A.',
+								'cod'=>'z05',
+								'name'=>'COMPACTOZULIA',
+								'razon_social'=>'COMPACTO ZULIA, C.A.',
 								'RIF'=>'J-00000000-0',
-								'bd'=>'compactolara'
+								'bd'=>'z05'
 								);
-
-$config['empresas'] []= array(
-								'cod'=>'008',
-								'name'=>'DEIMPORTLARA',
-								'razon_social'=>'DEIMPORT LARA, C.A.',
-								'RIF'=>'J-0000000-0',
-								'bd'=>'deimportlara'
-								);
-
-$config['empresas'] []= array(
-								'cod'=>'003',
-								'name'=>'TRANSDEVI',
-								'razon_social'=>'TRANSDEVI, C.A.',
-								'RIF'=>'J-0000000-0',
-								'bd'=>'transdevi'
-								);
-
-
 /* End of file config.php */
 /* Location: ./application/config/config.php */

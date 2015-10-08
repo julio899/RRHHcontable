@@ -25,7 +25,7 @@
 				for ($i=0; $i < count($this->config->config['empresas']); $i++) { 
 					?>
 
-		  <a href="<?php echo base_url().index_page().'/usuario/selecionar_empresa/'.$this->config->config['empresas'][$i]['cod'];?>" class="list-group-item">
+		  <a href="<?php echo base_url().'usuario/selecionar_empresa/'.$this->config->config['empresas'][$i]['cod'];?>" class="list-group-item">
 		    <h4 class="list-group-item-heading"><?php echo $this->config->config['empresas'][$i]['razon_social'];?></h4>
 		    <p class="list-group-item-text">CODIGO:<?php echo $this->config->config['empresas'][$i]['cod'];?>     -   [ <?php echo $this->config->config['empresas'][$i]['RIF'];?> ]</p>
 		  </a>

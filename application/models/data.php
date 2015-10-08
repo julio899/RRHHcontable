@@ -37,6 +37,7 @@ class Data extends CI_Model {
 
     function seleccion_bd(){
     	$this->obj=$this->session->userdata('empresa_seleccionada');
+		//var_dump($this->obj['bd']); exit;
 		$this->load->database($this->obj['bd'],TRUE);
 	}//FIN de seleccion_bd
 
