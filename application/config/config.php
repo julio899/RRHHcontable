@@ -366,5 +366,13 @@ $config['empresas'] []= array(
 								'RIF'=>'J-00000000-0',
 								'bd'=>'z05'
 								);
+
+$config['empresas'] []= array(
+								'cod'=>'z03',
+								'name'=>'DIMOSAZULIA',
+								'razon_social'=>'DIMOSA ZULIA, C.A.',
+								'RIF'=>'J-00000000-0',
+								'bd'=>'z03'
+								);
 /* End of file config.php */
 /* Location: ./application/config/config.php */
